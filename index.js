@@ -1,12 +1,9 @@
-console.log("start");
-
 noShow();
 
 makeCallToServer();
 
 function makeCallToServer() {
   fetch("http://dummy.restapiexample.com/api/v1/employees")
-
     .then(parseResponse)
     .then(displayResponseBody)
     .catch(displayErrorFromServer);
@@ -20,13 +17,10 @@ function parseResponse(response) {
   return response.json();
 }
 
-
 function displayResponseBody(json) {
   console.log(json);
 
-
   for (let index = 0; index < json.length; index++) {
-
     if (index < 5) {
       let element = json[index];
 
@@ -48,17 +42,10 @@ function displayResponseBody(json) {
 
       employee.appendChild(employeeAgeSalary);
 
-
-
       document.getElementById("employee-list").appendChild(employee);
-
-
     }
-
   }
 }
-
-console.log("end");
 
 document.getElementsByTagName("button")[0].addEventListener("click", AddInput);
 document.getElementsByTagName("button")[0].addEventListener("click", postData);
@@ -69,30 +56,28 @@ function postData() {
   let inputSalary = document.getElementById("salary");
 
   let data = {
-    "name": inputName.value,
-    "salary": inputSalary.value,
-    "age": inputAge.value
+    name: inputName.value,
+    salary: inputSalary.value,
+    age: inputAge.value
   };
 
   noShow();
 
-  fetch('http://dummy.restapiexample.com/api/v1/create', {
-    method: 'POST',
-    body: JSON.stringify(data),
+  fetch("http://dummy.restapiexample.com/api/v1/create", {
+    method: "POST",
+    body: JSON.stringify(data)
   })
-    .then(function (response) {
+    .then(function(response) {
       return response.json();
     })
-    .then(function (data) {
+    .then(function(data) {
       noShow();
       console.log(data);
     })
-    .catch(function (error) {
+    .catch(function(error) {
       console.log(error);
     });
-
 }
-
 
 function AddInput(mainDiv, mainParagraph) {
   mainDiv = document.createElement("div");
@@ -106,11 +91,14 @@ function AddInput(mainDiv, mainParagraph) {
 
   ageSalaryParagraph = document.createElement("p");
   ageSalaryParagraph.classList.add("employee-age-salary");
-  ageSalaryParagraph.innerText = "Age: " + document.getElementById("age").value + " Salary: " + document.getElementById("salary").value;
+  ageSalaryParagraph.innerText =
+    "Age: " +
+    document.getElementById("age").value +
+    " Salary: " +
+    document.getElementById("salary").value;
   mainDiv.appendChild(ageSalaryParagraph);
 
   document.getElementById("employee-list").appendChild(mainDiv);
-
 }
 
 function noShow() {
@@ -118,18 +106,17 @@ function noShow() {
 }
 
 function closingBtn(parent, paragraph) {
-  return new Promise(function (resolve, reject) {
+  return new Promise(function(resolve, reject) {
     let close = document.createElement("p");
     parent.appendChild(close);
-    close.innerHTML = "&times;"
+    close.innerHTML = "&times;";
     close.classList.add("closebtn");
-    close.addEventListener("click", function () {
+    close.addEventListener("click", function() {
       resolve(close);
     });
-  })
+  });
 }
 
 function deleteButton(close) {
   close.parentElement.remove();
-
 }
