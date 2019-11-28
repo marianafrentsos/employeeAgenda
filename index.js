@@ -3,7 +3,7 @@ noShow();
 makeCallToServer();
 
 function makeCallToServer() {
-  fetch("http://dummy.restapiexample.com/api/v1/employees")
+  fetch("https://dummy.restapiexample.com/api/v1/employees")
     .then(parseResponse)
     .then(displayResponseBody)
     .catch(displayErrorFromServer);
@@ -63,7 +63,7 @@ function postData() {
 
   noShow();
 
-  fetch("http://dummy.restapiexample.com/api/v1/create", {
+  fetch("https://dummy.restapiexample.com/api/v1/create", {
     method: "POST",
     body: JSON.stringify(data)
   })
