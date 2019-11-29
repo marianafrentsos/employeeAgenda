@@ -3,7 +3,7 @@ noShow();
 makeCallToServer();
 
 function makeCallToServer() {
-  fetch("https://dummy.restapiexample.com/api/v1/employees")
+  fetch("http://dummy.restapiexample.com/api/v1/employees")
     .then(parseResponse)
     .then(displayResponseBody)
     .catch(displayErrorFromServer);
@@ -18,8 +18,6 @@ function parseResponse(response) {
 }
 
 function displayResponseBody(json) {
-  console.log(json);
-
   for (let index = 0; index < json.length; index++) {
     if (index < 5) {
       let element = json[index];
@@ -63,7 +61,7 @@ function postData() {
 
   noShow();
 
-  fetch("https://dummy.restapiexample.com/api/v1/create", {
+  fetch("http://dummy.restapiexample.com/api/v1/create", {
     method: "POST",
     body: JSON.stringify(data)
   })
